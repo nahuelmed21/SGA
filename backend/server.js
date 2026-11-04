@@ -7,6 +7,7 @@ const conectarDB = require("./config/database")
 const alumnosRoutes = require("./routes/alumnos.routes") 
 const docentesRoutes = require("./routes/docentes.routes")
 const authRoutes  = require("./routes/authRoutes")
+const materiaRoutes = require("./routes/materiaRoutes")
 
 
 const app = express() 
@@ -16,6 +17,19 @@ app.use(cors())
 app.use("/alumnos", alumnosRoutes) 
 app.use("/docentes", docentesRoutes)
 app.use("/auth", authRoutes)
+app.use("/materias", materiaRoutes)
+
+app.use((error, req, res, next) => {
+    if (error.type === "entity.parse.failed") {
+        return res.status(400).json({
+            mensaje: "El cuerpo de la petición no es un JSON válido"
+        })
+    }
+    console.error("Error no controlado:", error)
+    res.status(500).json({
+        mensaje: "Error interno del servidor"
+    })
+})
 
 const PORT = process.env.PORT 
 

@@ -58,3 +58,195 @@ Content-Type: application/json
     "email": "admin@sga.com",
     "password":"ClaveDePrueba123!"
 }
+
+### ======================= MATERIAS =======================
+
+### 1. Consultar todas las materias con la colección vacía
+GET http://localhost:3000/materias
+
+### 5. Registrar una materia con todos los datos válidos
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Programación I",
+    "descripcion": "Fundamentos de programación estructurada",
+    "cargaHoraria": 96,
+    "estado": "activa"
+}
+
+### 2. Registrar varias materias (a)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG3",
+    "nombre": "Programación III",
+    "descripcion": "Programación orientada a objetos",
+    "cargaHoraria": 128,
+    "estado": "activa"
+}
+
+### 2. Registrar varias materias (b)
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "BD1",
+    "nombre": "Base de Datos I",
+    "cargaHoraria": 64,
+    "estado": "inactiva"
+}
+
+### 2. Verificar que aparezcan en el listado
+GET http://localhost:3000/materias
+
+### 3. Consultar una materia por su código
+GET http://localhost:3000/materias/PRG1
+
+### 4. Consultar un código inexistente
+GET http://localhost:3000/materias/XYZ9
+
+### 6. Registrar una materia sin código
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "nombre": "Programación IV",
+    "cargaHoraria": 128,
+    "estado": "activa"
+}
+
+### 7. Registrar una materia sin nombre
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "cargaHoraria": 128,
+    "estado": "activa"
+}
+
+### 8. Registrar una materia sin carga horaria
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "nombre": "Programación IV",
+    "estado": "activa"
+}
+
+### 9. Registrar una materia con carga horaria igual a cero
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "nombre": "Programación IV",
+    "cargaHoraria": 0,
+    "estado": "activa"
+}
+
+### 9. Registrar una materia con carga horaria negativa
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "nombre": "Programación IV",
+    "cargaHoraria": -64,
+    "estado": "activa"
+}
+
+### 9. Registrar una materia con carga horaria decimal
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "nombre": "Programación IV",
+    "cargaHoraria": 64.5,
+    "estado": "activa"
+}
+
+### 10. Registrar una materia con código duplicado
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Otra materia con el mismo código",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+### 11. Registrar una materia con un estado no permitido
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "PRG4",
+    "nombre": "Programación IV",
+    "cargaHoraria": 128,
+    "estado": "suspendida"
+}
+
+### 12. Modificar el nombre y la descripción de una materia existente
+PUT http://localhost:3000/materias/PRG1
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Programación I (Plan 2024)",
+    "descripcion": "Algoritmos, estructuras de control y funciones",
+    "cargaHoraria": 96,
+    "estado": "activa"
+}
+
+### 13. Modificar la carga horaria y el estado
+PUT http://localhost:3000/materias/PRG1
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Programación I (Plan 2024)",
+    "descripcion": "Algoritmos, estructuras de control y funciones",
+    "cargaHoraria": 112,
+    "estado": "inactiva"
+}
+
+### 14. Modificar una materia inexistente
+PUT http://localhost:3000/materias/XYZ9
+Content-Type: application/json
+
+{
+    "codigo": "XYZ9",
+    "nombre": "Materia inexistente",
+    "cargaHoraria": 64,
+    "estado": "activa"
+}
+
+### 15. Cambiar el código por el de otra materia ya registrada
+PUT http://localhost:3000/materias/PRG3
+Content-Type: application/json
+
+{
+    "codigo": "PRG1",
+    "nombre": "Programación III",
+    "cargaHoraria": 128,
+    "estado": "activa"
+}
+
+### 16. Eliminar una materia existente...
+DELETE http://localhost:3000/materias/BD1
+
+### 16. ...e intentar consultarla nuevamente
+GET http://localhost:3000/materias/BD1
+
+### 17. Eliminar una materia inexistente
+DELETE http://localhost:3000/materias/XYZ9
+
+### 18. Comprobar que el listado refleje los cambios realizados
+GET http://localhost:3000/materias
