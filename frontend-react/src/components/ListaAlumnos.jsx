@@ -10,7 +10,7 @@ import { useAuth } from "../context/useAuth"
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
-    const { token } = useAuth()
+    const { token, usuario } = useAuth()
     const [alumnos, setAlumnos] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
@@ -60,7 +60,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
         }
     }
         cargarAlumnos()
-    }, [actualizar])
+    }, [actualizar, token])
 
     if (cargando) {
         return (
@@ -129,6 +129,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
                                         </Typography>
                                     </Box>
                                 </Stack>
+                                {usuario?.rol === "admin" && (
                                 <Stack direction="row" spacing={1} sx={{ justifyContent: "flex-end" }}>
                                     <Button
                                         type="button"
@@ -148,6 +149,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
                                         Eliminar
                                     </Button>
                                 </Stack>
+                                )}
                             </Paper>
                         ))}
                     </Stack>
