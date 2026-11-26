@@ -6,9 +6,11 @@ import Chip from "@mui/material/Chip"
 import Paper from "@mui/material/Paper"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import { useAuth } from "../context/useAuth"
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
+    const { token } = useAuth()
     const [alumnos, setAlumnos] = useState([])
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
@@ -19,7 +21,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
             return
         }
         try {
-            const token = localStorage.getItem("token")
+           
             const respuesta = await fetch(`${API_ALUMNOS}/${legajo}`, 
                 { method: "DELETE" ,
                 headers: { Authorization: `Bearer ${token}` }
@@ -39,7 +41,7 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
             setError("")
 
                        try {
-            const token = localStorage.getItem("token")             
+                        
             const respuesta = await fetch(API_ALUMNOS, {
                 headers: { Authorization: `Bearer ${token}` }      
             })

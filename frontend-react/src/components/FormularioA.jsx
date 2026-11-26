@@ -5,9 +5,11 @@ import Button from "@mui/material/Button"
 import Paper from "@mui/material/Paper"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
+import { useAuth } from "../context/useAuth"
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
+    const { token } = useAuth()
     const [formulario, setFormulario] = useState({
         legajo: String(alumnoEditar?.legajo ?? ""),
         nombre: alumnoEditar?.nombre ?? "",
@@ -40,7 +42,7 @@ function FormularioA({ onAlumnoCreado, alumnoEditar, onCancelar }){
                 ? `${API_ALUMNOS}/${alumnoEditar.legajo}`
                 : API_ALUMNOS
         try {
-            const token = localStorage.getItem("token")
+            
             const respuesta = await fetch(url, {
                 method: editando ? "PUT" : "POST",
                 headers: {
