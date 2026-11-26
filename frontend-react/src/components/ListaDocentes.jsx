@@ -9,7 +9,7 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
     const [error, setError] = useState("")
 
     async function eliminarDocente(dni){
-        const confirmar = window.confirm("¿Seguro que querés eliminar este alumno?")
+        const confirmar = window.confirm("¿Seguro que querés eliminar este docente?")
         if (!confirmar) {
             return
         }
@@ -109,7 +109,7 @@ export function ListaDocentes({ actualizar, onDocenteCreado, onEditarDocente }) 
                                     spacing={1.5}
                                     sx={{ alignItems: "center", flexWrap: "wrap" }}
                                 >
-                                    <Chip label={`Legajo ${docente.dni}`} color="primary" variant="outlined" size="small" />
+                                    <Chip label={`Dni ${docente.dni}`} color="primary" variant="outlined" size="small" />
                                     <Box>
                                         <Typography fontWeight={600}>{docente.nombre}</Typography>
                                         <Typography variant="body2" color="text.secondary">
