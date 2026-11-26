@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 export default function Login() {
     const navigate = useNavigate()                        
-    const { setToken, setUsuario} = useAuth()
+    const { setToken, usuario, setUsuario} = useAuth()
     const theme = useTheme()
     
     //const [usuario, setUsuario] = useState(null)

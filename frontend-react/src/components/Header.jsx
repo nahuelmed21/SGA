@@ -1,8 +1,7 @@
-import { AppBar, Box, Container, IconButton, Link, Stack, Toolbar, Typography } from "@mui/material"
+import { AppBar, Box, Button, Container, IconButton, Link, Stack, Toolbar, Typography } from "@mui/material"
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded"
-import { Link as RouterLink } from "react-router-dom"
-import { Link as RouterLink, useNavigate } from "react-router-dom" 
-import SelectorTema from "./SelectorTema";
+import { Link as RouterLink, useNavigate } from "react-router-dom"
+import SelectorTema from "./SelectorTema"
 import { useAuth } from "../context/useAuth"
 
 export default function Header() {
