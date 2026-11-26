@@ -19,9 +19,11 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
             return
         }
         try {
+            const token = localStorage.getItem("token")
             const respuesta = await fetch(`${API_ALUMNOS}/${legajo}`, 
-                { method: "DELETE" }
-            )
+                { method: "DELETE" ,
+                headers: { Authorization: `Bearer ${token}` }
+        })
             if (!respuesta.ok) {
                 throw new Error(`No se pudo eliminar. Estado HTTP: ${respuesta.status}`)
             }
@@ -36,8 +38,11 @@ export function ListaAlumnos({ actualizar, onAlumnoCreado, onEditarAlumno }) {
             setCargando(true)
             setError("")
 
-            try {
-            const respuesta = await fetch(API_ALUMNOS)
+                       try {
+            const token = localStorage.getItem("token")             
+            const respuesta = await fetch(API_ALUMNOS, {
+                headers: { Authorization: `Bearer ${token}` }      
+            })
 
             if (!respuesta.ok){
                 throw new Error("No se pudo obtener la lista", respuesta.status)

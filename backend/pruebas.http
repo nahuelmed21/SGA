@@ -265,4 +265,4 @@ GET http://localhost:3000/alumnos
 
 ### Alumnos CON token → debe dar 200
 GET http://localhost:3000/alumnos
-Authorization: Bearer PEGÁ_ACÁ_EL_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDBkZGFlZDgwZjA5NTAwOGU2NjkwMyIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzk1NzA2MDY2LCJleHAiOjE3OTU3MTMyNjZ9.tgrGtFyyXM0z-BMAPok6z0lgS1SGQ0w3qVLZigdi3eo
