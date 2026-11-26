@@ -250,3 +250,19 @@ DELETE http://localhost:3000/materias/XYZ9
 
 ### 18. Comprobar que el listado refleje los cambios realizados
 GET http://localhost:3000/materias
+
+### Login (copiá el "token" de la respuesta)
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@sga.com",
+    "password": "ClaveDePrueba123!"
+}
+
+### Alumnos SIN token → debe dar 401
+GET http://localhost:3000/alumnos
+
+### Alumnos CON token → debe dar 200
+GET http://localhost:3000/alumnos
+Authorization: Bearer PEGÁ_ACÁ_EL_TOKEN
